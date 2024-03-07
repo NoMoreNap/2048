@@ -4,3 +4,5 @@ export interface ICell {
     value: number,
     id: number | string
 }
+
+export type coordType = 1 | 2 | 3 | 0

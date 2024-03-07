@@ -41,3 +41,11 @@ export const MOCK_CELLS = [
     {x: 2,y: 3, value: 32768, id: 1},
     {x: 3,y: 3, value: 65536, id: 1},
 ]
+
+export const directions = {
+    TOP: 'TOP',
+    BOTTOM: 'BOTTOM',
+    LEFT: 'LEFT',
+    RIGHT: 'RIGHT',
+
+}
