@@ -4,7 +4,7 @@ import {ICell} from "../../../interfaces/objects.inteface";
 import {CELL_SIZE, GAP_SIZE} from "../../../configs/main.config";
 import {calcColor} from "../../../functions/calcColor";
 
-export const PlayCell: React.FC<ICell> = ({x,y,value, id}) => {
+export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick}) => {
     const color = calcColor(value);
     const style = {
         backgroundColor: color,
@@ -31,7 +31,7 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id}) => {
         )()
     }
     return (
-        <Box sx ={style}>
+        <Box onClick={onClick} sx ={style}>
             <Typography sx={valueStyle}>
                 {value}
             </Typography>

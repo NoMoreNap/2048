@@ -1,2 +1,5 @@
 export {initCells} from './cells/initCells'
 export {moveCells} from './cells/moveCells'
+export {cellStates} from  './cells/cellsManager'
+export  {removeAndIncrease} from  './cells/removeAndIncrease'
+export {newCell} from  './cells/newCell'

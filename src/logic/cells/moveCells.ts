@@ -1,18 +1,16 @@
 import {coordType, ICell} from "../../interfaces/objects.inteface";
 import {directions} from "../../configs/main.config";
 import {Matrix} from "../../engine/Matrix";
-
-
+import {cellStates} from "./cellsManager"
 
 export const moveCells = (initCells: ICell[], direction: string) => {
-    const cells = [...initCells]
+    const cells: ICell[] = JSON.parse(JSON.stringify(initCells))
 
-    const matrix: ICell[][] | number[][] | any = Array.from(Array(4),() => Array.from(Array(4), () => 0))
+    const matrix: ICell[][] | number[][] | any = Array.from(new Array(4),() => Array.from(new Array(4), () => 0))
 
     cells.forEach((cell: ICell) => {
         matrix[cell.y][cell.x] = cell
     })
-    printMatrix(matrix)
 
     rotateMatrixFromDirection(matrix,direction)
     for (let y = 0; y < 4; y++) {
@@ -21,7 +19,7 @@ export const moveCells = (initCells: ICell[], direction: string) => {
             moveCell(x,y,matrix)
         }
     }
-    //printMatrix(matrix)
+
     rotateMatrixToDirection(matrix,direction)
 
     for (let y = 0; y < 4; y++) {
@@ -31,28 +29,47 @@ export const moveCells = (initCells: ICell[], direction: string) => {
             matrix[y][x].x = x
         }
     }
-    printMatrix(matrix)
+
+
+
+    cells.filter(cell => cell.killedBy !== undefined).forEach(cell => {
+        cell.x = (cell.killedBy as ICell)?.x;
+        cell.y = (cell.killedBy as ICell)?.y
+        delete cell.killedBy
+    })
 
     return cells
 
 
 }
 const moveCell = (x: number, y: number, matrix: ICell[][] | number[][]) => {
-    if(x > 3 || x < 0) {
-        return 0
-    }
-    if(y > 3 || y < 0) {
-        return 0
-    }
+
     let nextRow = y - 1
     let currentRow = y
+
     while (nextRow >= 0) {
 
         if (matrix[nextRow][x] === 0) {
-            matrix[nextRow][x] = matrix[currentRow][x]
+            matrix[nextRow][x] = matrix[currentRow][x];
+            (matrix[currentRow][x] as ICell).state = cellStates.MOVING
             matrix[currentRow][x] = 0
 
             currentRow = nextRow
+        } else if (
+            (matrix[nextRow][x] as ICell).value === (matrix[currentRow][x]as ICell).value
+            &&
+            ((matrix[nextRow][x] as ICell).state === cellStates.IDLE ||
+                (matrix[nextRow][x] as ICell).state === cellStates.MOVING)
+        ) {
+            (matrix[nextRow][x] as ICell).state = cellStates.DYING;
+            (matrix[nextRow][x] as ICell).killedBy = matrix[currentRow][x];
+            (matrix[currentRow][x] as ICell).state = cellStates.INC
+            matrix[nextRow][x] = matrix[currentRow][x]
+            matrix[currentRow][x] = 0
+            currentRow = nextRow
+
+        } else  {
+            break
         }
         nextRow--
     }
@@ -70,7 +87,6 @@ const rotateMatrixFromDirection = (matrix: ICell[][], direction: string) =>  {
             Matrix.Rotate(matrix)
             break;
         case directions.RIGHT:
-
             Matrix.Rotate(matrix)
             Matrix.Rotate(matrix)
             Matrix.Rotate(matrix)
@@ -107,7 +123,7 @@ function printMatrix(matrix: any) {
     Array.from(new Array(4), (x, i) => i).forEach(colNum => {
         printString += '  '
         printString += Array.from(new Array(4), (x, i) => i)
-            .map(rowNum => JSON.stringify(matrix[colNum][rowNum])
+            .map(rowNum => JSON.stringify(matrix[colNum][rowNum].value ?? 0)
                 //.padStart(40, ' ')
             )
             .join(', ')

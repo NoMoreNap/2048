@@ -1,21 +1,21 @@
 import {createCell} from "../logic/cells/cellsManager";
 const cellsToEquals =   [
-    { x: 0, y: 0, value: 2, id: '123ix' },
-    { x: 0, y: 1, value: 2, id: '123ix' },
-    { x: 0, y: 2, value: 2, id: '123ix' },
-    { x: 0, y: 3, value: 2, id: '123ix' },
-    { x: 1, y: 0, value: 4, id: '123ix' },
-    { x: 1, y: 1, value: 4, id: '123ix' },
-    { x: 1, y: 2, value: 4, id: '123ix' },
-    { x: 1, y: 3, value: 4, id: '123ix' },
-    { x: 2, y: 0, value: 8, id: '123ix' },
-    { x: 2, y: 1, value: 8, id: '123ix' },
-    { x: 2, y: 2, value: 8, id: '123ix' },
-    { x: 2, y: 3, value: 8, id: '123ix' },
-    { x: 3, y: 0, value: 16, id: '123ix' },
-    { x: 3, y: 1, value: 16, id: '123ix' },
-    { x: 3, y: 2, value: 16, id: '123ix' },
-    { x: 3, y: 3, value: 16, id: '123ix' }
+    { x: 0, y: 0, value: 2, id: '123ix', state: "IDLE"},
+    { x: 0, y: 1, value: 2, id: '123ix', state: "IDLE" },
+    { x: 0, y: 2, value: 2, id: '123ix', state: "IDLE" },
+    { x: 0, y: 3, value: 2, id: '123ix', state: "IDLE" },
+    { x: 1, y: 0, value: 4, id: '123ix', state: "IDLE" },
+    { x: 1, y: 1, value: 4, id: '123ix', state: "IDLE" },
+    { x: 1, y: 2, value: 4, id: '123ix', state: "IDLE" },
+    { x: 1, y: 3, value: 4, id: '123ix', state: "IDLE" },
+    { x: 2, y: 0, value: 8, id: '123ix', state: "IDLE" },
+    { x: 2, y: 1, value: 8, id: '123ix', state: "IDLE" },
+    { x: 2, y: 2, value: 8, id: '123ix', state: "IDLE" },
+    { x: 2, y: 3, value: 8, id: '123ix', state: "IDLE" },
+    { x: 3, y: 0, value: 16, id: '123ix', state: "IDLE" },
+    { x: 3, y: 1, value: 16, id: '123ix', state: "IDLE" },
+    { x: 3, y: 2, value: 16, id: '123ix', state: "IDLE" },
+    { x: 3, y: 3, value: 16, id: '123ix', state: "IDLE" }
 ]
 
 

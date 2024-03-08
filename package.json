@@ -31,6 +31,8 @@
     "elum-state": "^0.7.5",
     "express": "^4.18.2",
     "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "matrix-rotate": "^0.0.2",
     "md5": "^2.3.0",
     "nodemon": "^3.0.2",
     "notistack": "^3.0.1",
@@ -77,6 +79,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.202",
     "@types/md5": "^2.3.5"
   }
 }

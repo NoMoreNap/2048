@@ -2,7 +2,10 @@ export interface ICell {
     x: number,
     y: number,
     value: number,
-    id: number | string
+    id: number | string,
+    state?: string,
+    killedBy?: ICell | number,
+    onClick?: (a?: any) => any
 }
 
 export type coordType = 1 | 2 | 3 | 0
