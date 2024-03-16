@@ -8,4 +8,16 @@ export interface ICell {
     onClick?: (a?: any) => any
 }
 
+export interface IUserData {
+    vkid: number
+    profileInfo: {
+        first_name?: string
+        second_name?: string
+    },
+    gameInfo: {
+        balance: number
+    },
+}
+
+
 export type coordType = 1 | 2 | 3 | 0

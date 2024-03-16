@@ -1,4 +1,4 @@
-import {createCell} from "../logic/cells/cellsManager";
+import {createCell} from "../screens/game/logic/cells/cellsManager";
 const cellsToEquals =   [
     { x: 0, y: 0, value: 2, id: '123ix', state: "IDLE"},
     { x: 0, y: 1, value: 2, id: '123ix', state: "IDLE" },

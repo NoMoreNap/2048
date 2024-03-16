@@ -12,3 +12,12 @@ export interface IField {
     setCells: (a: ICell[]) => void
 }
 
+export interface IScreenProvider extends Props{
+    visible: boolean
+}
+
+export interface IBtnProps extends  Props {
+    type?: string
+    onClick?: (a: any) => any
+}
+

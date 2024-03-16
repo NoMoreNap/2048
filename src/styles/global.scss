@@ -7,3 +7,22 @@
   font-family: 'Roboto', sans-serif;
   overflow: hidden;
 }
+
+.center {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logos {
+  &-main {
+    max-width: 430px;
+    position: relative;
+    z-index: 1;
+  }
+}
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}

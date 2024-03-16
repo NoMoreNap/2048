@@ -1,6 +1,6 @@
-import {moveCells} from "../logic";
-import {cellStates, createCell} from "../logic/cells/cellsManager";
-import {directions} from "../configs/main.config";
+import {moveCells} from "../screens/game/logic";
+import {cellStates, createCell} from "../screens/game/logic/cells/cellsManager";
+import {directions} from "../screens/game/configs/main.config";
 
 const finalCells =
     {
