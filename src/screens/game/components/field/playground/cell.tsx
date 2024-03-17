@@ -4,9 +4,10 @@ import {ICell} from "../../../../../interfaces/objects.inteface";
 import {CELL_SIZE, COLOR, GAP_SIZE} from "../../../configs/main.config";
 import {calcColor} from "../../../functions/calcColor";
 
-export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state}) => {
+export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state, isEdit}) => {
     //@ts-ignore
     const color = COLOR[value];
+    console.log(isEdit)
     const style = {
         backgroundColor: color,
         position: 'absolute',
@@ -20,6 +21,8 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state}) => {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'visible',
+        border: isEdit ? '5px dashed #fff' : '',
+        cursor: isEdit ? 'pointer' : '',
         zIndex: 1
     }
 

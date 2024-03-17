@@ -2,10 +2,11 @@ export interface ICell {
     x: number,
     y: number,
     value: number,
-    id: number | string,
+    id: string,
     state?: string,
     killedBy?: ICell | number,
     onClick?: (a?: any) => any
+    isEdit?: boolean
 }
 
 export interface IUserData {

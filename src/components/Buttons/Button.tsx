@@ -24,6 +24,18 @@ export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) 
                 background: 'transparent'
             }
             break
+        case 'revert-outlined':
+            style = {
+                border: '1px solid #000',
+                background: 'transparent',
+                color: '#000'
+            }
+            break
+        case 'blue':
+            style = {
+                background: 'rgba(50, 46, 249, 1)'
+            }
+            break
         default:
             break;
 

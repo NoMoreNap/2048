@@ -3,7 +3,7 @@ import React from "react";
 import {MainLogo} from "../../assets";
 import {Btn} from "../../components/Buttons/Button";
 import {setter} from "elum-state/react";
-import {PAGE} from "../../states/elum";
+import {MODAL_STARS, PAGE} from "../../states/elum";
 
 const style = {
     width: '100%',
@@ -22,7 +22,7 @@ export const Start = () => {
                 </Box>
                 <Box sx={{display: 'flex', flexDirection: 'column',width: 'calc(100% - 200px)', gap: '3vh'}}>
                     <Btn onClick={() => setter(PAGE, 'game')} type='default'>Играть</Btn>
-                    <Btn type='starred'>Задания</Btn>
+                    <Btn onClick={() => setter(MODAL_STARS, true)} type='starred'>Пополнить</Btn>
                     <Btn type='outlined'>Рейтинг</Btn>
                 </Box>
 

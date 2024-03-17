@@ -1,8 +1,8 @@
 import { cellStates } from "../logic"
 
-export let CELL_SIZE = 100
+export let CELL_SIZE = 120
 export let GAP_SIZE = 10
-export let BOARD_SIZE = 450
+export let BOARD_SIZE = 510
 export let BOARD_PADDING = 0
 /* mobile */
 export const CELL_SIZE_MOBILE = 50
@@ -17,7 +17,6 @@ if (width < 600) {
     BOARD_SIZE = width - (10*2)
     CELL_SIZE = (BOARD_SIZE / 4) - (GAP_SIZE * 3)
     BOARD_PADDING = BOARD_PADDING_MOBILE
-
 }
 
 export const COLOR = {
@@ -64,5 +63,40 @@ export const directions = {
     BOTTOM: 'BOTTOM',
     LEFT: 'LEFT',
     RIGHT: 'RIGHT',
-
 }
+
+
+export const VOTES = [
+    {
+        id: 0,
+        value: 5,
+        title: '1 голос',
+        cost: 1,
+    },
+    {
+        id: 1,
+        value: 15,
+        title: '2 голоса',
+        cost: 2,
+    },
+    {
+        id: 0,
+        value: 25,
+        title: '3 голоса',
+        cost: 3,
+    },
+    {
+        id: 0,
+        value: 100,
+        title: '10 голосов',
+        cost: 10,
+    },
+    {
+        id: 0,
+        value: 300,
+        title: '25 голосов',
+        cost: 25,
+    },
+]
+
+

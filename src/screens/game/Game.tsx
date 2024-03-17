@@ -4,7 +4,7 @@ import {Navbar} from "../../components/Screens/Game/Nav/Navbar";
 
 export const Game = () => {
     return (
-        <Box sx={{display: 'flex',  width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center'}}>
+        <Box sx={{display: 'flex',  width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 5}}>
             <Navbar/>
             <Board/>
         </Box>

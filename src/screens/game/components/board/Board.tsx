@@ -1,25 +1,20 @@
-import React, {ReactNode} from 'react'
+import React from 'react'
 import {BoardLayout} from "../layouts/BoardLayout";
 import {Field} from "../field/Field";
-import {Matrix} from "../../engine/Matrix";
 import { ICell } from '../../../../interfaces/objects.inteface';
-import {initCells, moveCells, newCell, removeAndIncrease} from "../../logic";
-import {Box, Button, Menu, MenuItem, Typography} from "@mui/material";
-import {cellsEquals} from "../../logic/cells/cellsManager";
-import {directions, MOCK_CELLS} from "../../configs/main.config";
+import {Box, Typography} from "@mui/material";
 import { api } from '../../../../api/api';
+import CachedIcon from '@mui/icons-material/Cached';
+import {Actions} from "../../../../components/Screens/Game/Actions/Actions";
+import {setter, useGlobalValue} from "elum-state/react";
+import {CELEBRATING, IS_NEW_GAME, IS_SAVE_GAME, MODAL, RESULT, USER_DATA} from "../../../../states/elum";
+import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
 
-function Menun(props: {
-    anchorEl: any,
-    onClose: any,
-    id: string,
-    open: (url?: (string | URL), target?: string, features?: string) => (WindowProxy | null),
-    MenuListProps: { "aria-labelledby": string },
-    children: ReactNode
-}) {
-    return null;
-}
 export const Board = () => {
+    const IsNewGame = useGlobalValue(IS_NEW_GAME)
+    const IsSaveGame = useGlobalValue(IS_SAVE_GAME)
+    const celebratingCell = useGlobalValue(CELEBRATING)
+
     const [cells, setCells] = React.useState<ICell[]>([])
     const [isloading, setIsLoading] = React.useState(true)
 
@@ -31,10 +26,10 @@ export const Board = () => {
     const [anchor, setAnchor] = React.useState(0)
     const [lose, setLose] = React.useState(false)
 
-
     /* to buy functions */
-    const [stack, setStack] = React.useState([cells])
-    const [isEdit, setIsEdit] = React.useState('null')
+    const [isEdit, setIsEdit] = React.useState(false)
+
+    const {openSnackbar} = useEnqueueSnackbar()
 
 
     const minSwipeDistance = 50
@@ -90,12 +85,10 @@ export const Board = () => {
 
         }
 
-
-
     }
     const handleMove = async (action: string) => {
         const start = performance.now()
-        if (action !== 'null' && isEdit === 'null' && !lose) {
+        if (action !== 'null' && !isEdit && !lose) {
             try {
                 const {data} = await api.post('/game/move', {
                     action,
@@ -103,63 +96,75 @@ export const Board = () => {
                 })
                 setCells(data.data.cells)
                 setScore(data.data.score)
+                if (data.data.lose) {
+                    setLose(true)
+                    if (data.data.isMaxScore) {
+                        setter(MODAL, 'max_score')
+                    } else {
+                        setter(MODAL, 'lose')
+                    }
+                    setter(RESULT, {maxCell: data.data.maxCell, score: data.data.score})
+                }
+                if (data.data.maxCell === celebratingCell.number) {
+                    setter(RESULT, {maxCell: data.data.maxCell, score: data.data.score})
+                    setter(MODAL, 'max_cell')
+                }
             }catch (e) {
                 console.log(e)
             }
         }
-
-
-        // if (action !== 'null' && isEdit === 'null' && !lose) {
-        //     const movingCells = moveCells(cells, action.toUpperCase())
-        //
-        //     await new Promise(_=> setTimeout(_, 100))
-        //     const incCells = removeAndIncrease(movingCells, setScore, score)
-        //     const is_eqaul_cells = cellsEquals(cells, incCells)
-        //
-        //     let wrapperCells: any = incCells
-        //
-        //     if (! is_eqaul_cells) {
-        //         wrapperCells = newCell(incCells)
-        //     }
-        //     setCells(wrapperCells)
-        //     if (wrapperCells.length === 16) {
-        //         validateLose(wrapperCells)
-        //     }
-        // }
-    }
-
-    // const validateLose = (cells: ICell[]) => {
-    //     let isLose = false
-    //     const moves = Object.values(directions)
-    //     let cellsWrapper = [...cells]
-    //     for (const el of moves)  {
-    //         const movingCells = [...moveCells(cellsWrapper, el)]
-    //         const incCells = removeAndIncrease(movingCells, () => {}, 0)
-    //         isLose = cellsEquals(cellsWrapper, incCells)
-    //         if (!isLose) {
-    //             break;
-    //         }
-    //     }
-    //     if (isLose) setLose(true)
-    //
-    // }
-
-    const backStage = () => {
-        const newStack = stack.slice(0,stack.length -1)
-        if (newStack !== undefined) {
-            setCells(newStack[newStack?.length - 1])
-            setStack(newStack)
-        }
-
+        console.log(performance.now() - start)
     }
 
     const initCells = async () => {
         try {
             const {data} = await api.get('/game/init')
+            if (!data.data?.can_play) {
+                setLose(true)
+            }
             setCells(data.data.cells)
             setScore(data.data.score)
         }catch (e) {
             console.log(e)
+        } finally {
+            setIsLoading(false)
+
+        }
+
+    }
+
+    const restartGame = async () => {
+        setIsLoading(true)
+        try {
+            const {data} = await api.get('/game/restart')
+            setLose(false)
+            setCells(data.data.cells)
+            setScore(data.data.score)
+        }catch (e) {
+            console.log(e)
+        } finally {
+            setIsLoading(false)
+
+        }
+    }
+
+    const saveGame = async () => {
+        setIsLoading(true)
+        try {
+            const {data} = await api.get('/game/actions/save')
+            if (!data.status) {
+                await restartGame()
+                return openSnackbar({message: data.detail, variant: 'error'})
+            }
+            setter(USER_DATA, (state) => ({...state, gameInfo: {...state.gameInfo, balance: data.data.new_balance}}))
+            setCells(data.data.cells)
+            setScore(data.data.score)
+            setLose(false)
+        }catch (e) {
+            console.log(e)
+        } finally {
+            setIsLoading(false)
+
         }
 
     }
@@ -175,16 +180,35 @@ export const Board = () => {
         return () => document.removeEventListener('keydown', onKeyPress)
     },[])
 
+    React.useEffect(() => {
+        if (IsNewGame) {
+            setter(IS_NEW_GAME, false)
+            restartGame()
+        }
+        if (IsSaveGame) {
+            setter(IS_SAVE_GAME, false)
+            saveGame()
+        }
+    },[IsNewGame, IsSaveGame])
+
     return (
-        <Box onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} display={'flex'} flexDirection={'column'} gap={2}>
-            <Box sx={{display: 'flex', gap: 2}}>
-                <Typography sx={{color: '#fff'}}>Счет: </Typography>
-                <Typography sx={{color: '#fff', fontWeight: 500}}>{score}</Typography>
+        <>
+            <Box onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} display={'flex'} flexDirection={'column'} gap={2}>
+                <Box sx={{display: 'flex', justifyContent: 'space-between', zIndex: 2}}>
+                    <Box sx={{display: 'flex', gap: 2}}>
+                        <Typography sx={{color: '#fff', fontSize: '1.2rem'}}>Счет: </Typography>
+                        <Typography sx={{color: '#fff', fontWeight: 500, fontSize: '1.2rem'}}>{score}</Typography>
+                    </Box>
+                    <Box onClick={restartGame}  sx={{cursor: 'pointer'}}>
+                        <CachedIcon className={isloading ? 'spinner' : ''} sx={{color: '#fff'}}/>
+                    </Box>
+                </Box>
+                <BoardLayout>
+                    <Field isEdit={isEdit} setIsEdit={setIsEdit} setCells={setCells} cells={cells} isLoading={isloading}/>
+                </BoardLayout>
             </Box>
-            <BoardLayout>
-                <Field isEdit={isEdit} setIsEdit={setIsEdit} setCells={setCells} cells={cells}/>
-            </BoardLayout>
-        </Box>
+            <Actions setCells={setCells} setScore={setScore} setIsEdit={setIsEdit} isEdit={isEdit}/>
+        </>
     )
 }
 
