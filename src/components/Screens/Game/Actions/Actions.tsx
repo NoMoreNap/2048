@@ -6,9 +6,16 @@ import {BOARD_SIZE} from "../../../../screens/game/configs/main.config";
 import {api} from "../../../../api/api";
 import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
 import {setter, useGlobalValue} from "elum-state/react";
-import {DEFAULT_EDITING_CELL, EDITING_CELL, USER_DATA} from "../../../../states/elum";
+import {DEFAULT_EDITING_CELL, EDITING_CELL, IS_MOBILE, USER_DATA} from "../../../../states/elum";
 
 export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,isEdit}) => {
+    const isMobile = useGlobalValue(IS_MOBILE)
+    let style = {}
+    if(isMobile.key) {
+        style = {
+            width: '60px'
+        }
+    }
     const editing_cell = useGlobalValue(EDITING_CELL)
     const {openSnackbar} = useEnqueueSnackbar()
 
@@ -59,7 +66,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
         <Box sx={{display: 'flex', zIndex: 3, justifyContent: 'space-between', width: BOARD_SIZE}}>
 
             <Box onClick={() => sendAction('back')} sx={{cursor: 'pointer',display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Back/>
+                <Back style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
                     <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
@@ -67,7 +74,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
             </Box>
 
             <Box onClick={() => editCell('kill')} sx={{cursor: 'pointer',display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Kill/>
+                <Kill style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
                     <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
@@ -75,7 +82,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
             </Box>
 
             <Box onClick={() => editCell('mult')} sx={{cursor: 'pointer',display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Mult/>
+                <Mult style={style} />
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
                     <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
@@ -83,7 +90,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
             </Box>
 
             <Box onClick={() => editCell('division')} sx={{cursor: 'pointer',display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Division/>
+                <Division style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
                     <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>

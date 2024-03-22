@@ -8,7 +8,7 @@ export const TasksBlock: React.FC<IModalTasksBody> = ({tasks}) => {
         <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, width: '100%'}}>
             {
                 tasks.length ?
-                    tasks.map((el) => <TaskRow task={el}/>)
+                    tasks.map((el) => <TaskRow key={`${el.id}_task`} task={el}/>)
                     :
                     <Typography>В данный момент заданий нет :(</Typography>
             }

@@ -25,11 +25,11 @@ export const Field: React.FC<IField> = ({cells, isEdit, setCells, setIsEdit, isL
             <Background>
                 {
                     Array.from(Array(16)).map((_: any,i) =>
-                        <BackgroundCell key={i}/>
+                        <BackgroundCell key={`${i}_background_cell`}/>
                     )
                 }
                 {
-                    cells.map((el: ICell) => <PlayCell onClick={() => cellAction(el)} key={el.id} {...el} isEdit={isEdit}/>)
+                    cells.map((el: ICell) => <PlayCell onClick={() => cellAction(el)} key={`${el.id}_${el.value}_play_cell`} {...el} isEdit={isEdit}/>)
                 }
 
             </Background>

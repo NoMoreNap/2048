@@ -6,7 +6,7 @@ export let BOARD_SIZE = 510
 export let BOARD_PADDING = 0
 /* mobile */
 export const CELL_SIZE_MOBILE = 50
-export const GAP_SIZE_MOBILE = 5
+export const GAP_SIZE_MOBILE = 7
 export const BOARD_SIZE_MOBILE = 225
 export const BOARD_PADDING_MOBILE = 0
 
@@ -15,7 +15,7 @@ const width = window.innerWidth
 if (width < 600) {
     GAP_SIZE = GAP_SIZE_MOBILE
     BOARD_SIZE = width - (10*2)
-    CELL_SIZE = (BOARD_SIZE / 4) - (GAP_SIZE * 3)
+    CELL_SIZE = (BOARD_SIZE / 4) - (GAP_SIZE * 3) +.5
     BOARD_PADDING = BOARD_PADDING_MOBILE
 }
 

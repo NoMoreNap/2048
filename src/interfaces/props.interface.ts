@@ -1,5 +1,6 @@
 import {ReactNode} from "react";
 import {ICell} from "./objects.inteface";
+import exp from "constants";
 
 export interface Props {
     children?: ReactNode
@@ -56,3 +57,22 @@ export interface ITask {
 export interface IModalTasksBody {
     tasks: ITask[]
 }
+
+
+
+export interface ITopUser {
+    score: number;
+    vkid: number;
+    photo: string;
+    name: string;
+}
+
+export interface ITopUserRow extends ITopUser {
+    position: number
+}
+
+export interface ITopUsersProps {
+    users: ITopUser[]
+}
+
+

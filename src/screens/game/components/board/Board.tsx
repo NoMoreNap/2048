@@ -88,6 +88,7 @@ export const Board = () => {
     }
     const handleMove = async (action: string) => {
         const start = performance.now()
+        console.log(action !== 'null' && !isEdit && !lose, action !== 'null',!isEdit, !lose)
         if (action !== 'null' && !isEdit && !lose) {
             try {
                 const {data} = await api.post('/game/move', {

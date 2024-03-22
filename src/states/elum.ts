@@ -1,5 +1,6 @@
 import {atom, GlobalAtom} from "elum-state/react";
 import {IUserData} from "../interfaces/objects.inteface";
+import {searchParams, URLSearch} from "../api/config";
 
 export const USER_DATA: GlobalAtom<IUserData> = atom({
     key: "user_data",
@@ -55,4 +56,13 @@ export const CELEBRATING = atom({
 export const MODAL_STARS = atom({
     key: 'modal_stars',
     default: false
+})
+
+
+export const IS_MOBILE = atom({
+    key: 'is_mobile',
+    default: {
+        key: window.innerWidth < 420,
+        value: URLSearch.get('vk_platform')
+    }
 })

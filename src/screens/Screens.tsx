@@ -38,7 +38,7 @@ export const Screens = () => {
     return (
         <>
             {SCREENS.map(el =>
-                <ScreenProvider visible={page === el.type}>
+                <ScreenProvider key={`${el.type}_screen`} visible={page === el.type}>
                     {el.element}
                 </ScreenProvider>
             )}

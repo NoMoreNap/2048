@@ -31,7 +31,32 @@
   animation: spin 1s infinite linear;;
 
 }
+
+.scrollbar {
+  background: rgba(24, 105, 186, 0.56);
+  border-radius: 5px;
+  width: 5px;
+}
 @keyframes spin {
   to {transform:rotate(0deg);}
   from {transform:rotate(360deg);}
+}
+
+@media screen and (max-width: 420px){
+  * {
+    font-size: 15px;
+  }
+
+  .center {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .logos {
+    &-main {
+      max-width: 350px;
+      position: relative;
+      z-index: 1;
+    }
+  }
 }

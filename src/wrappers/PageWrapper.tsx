@@ -3,6 +3,8 @@ import React from "react";
 import {Props} from "../interfaces/props.interface";
 import {Box} from "@mui/material";
 import { SparklesCore } from "../components/ui/sparkles";
+import {useGlobalValue} from "elum-state/react";
+import {PAGE} from "../states/elum";
 
 const StyledMainDiv = styled('div')({
     background: 'linear-gradient(180deg, #472A85 0%, #202C9B 27.5%, #0C1459 59%, #200D30 100%)',
@@ -12,8 +14,9 @@ const StyledMainDiv = styled('div')({
 });
 
 export const PagesWrapper: React.FC<Props> = ({children}) => {
+    const page = useGlobalValue(PAGE)
     return (
-        <StyledMainDiv className='center'>
+        <StyledMainDiv className={page !== 'top' ? 'center' : ''}>
             <Box
                 sx={{
                     backgroundImage: 'url(/assets/backgrounds/lights.png)',
