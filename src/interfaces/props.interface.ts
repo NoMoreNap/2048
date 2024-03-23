@@ -1,6 +1,7 @@
 import {ReactNode} from "react";
 import {ICell} from "./objects.inteface";
 import exp from "constants";
+import {RequestPropsMap} from "@vkontakte/vk-bridge";
 
 export interface Props {
     children?: ReactNode
@@ -47,7 +48,7 @@ export interface ITask {
     award: number
     data:   {
         type: string,
-        action: string,
+        action: keyof RequestPropsMap,
         payload: any
     }
     id: number

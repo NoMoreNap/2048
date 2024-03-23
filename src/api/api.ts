@@ -9,7 +9,7 @@ switch (process.env["REACT_APP_MODE"]) {
         URL = `http://127.0.0.1:3004`//'http://127.0.0.1:3003'
         break
     case 'prod':
-        URL = ``
+        URL = `https://sl-2048.ru/api`
         break
 }
 export const api = axios.create({

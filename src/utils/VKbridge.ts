@@ -1,5 +1,5 @@
 import {IUserData} from "../interfaces/objects.inteface";
-import bridge, {UserInfo} from "@vkontakte/vk-bridge";
+import bridge, {RequestIdProp, RequestProps, RequestPropsMap, UserInfo} from "@vkontakte/vk-bridge";
 
 export class VK {
     static async getUsersInfo(users: {vkid: number}[]) {
@@ -16,6 +16,34 @@ export class VK {
             .catch((error) => {
                 console.log(error);
             });
+    }
 
+
+    static async getHash(payload: string) {
+        return bridge.send('VKWebAppCreateHash', {
+            payload: payload
+        }).then((data) => data).catch((error) => {console.log(error);});
+    }
+
+    static async completeTask<PayloadType>(payload: (RequestProps<keyof RequestPropsMap> & RequestIdProp) | undefined, action: keyof RequestPropsMap, separatop: string) {
+        const sign = await this.getHash(separatop)
+        const data = await bridge.send(action,payload).then( r => r).catch(e => e)
+        if (data.result) {
+            return {
+                complete: true,
+                data: sign
+            }
+        }
+        if (data.error_code !== undefined) {
+            return {
+                complete: false,
+                data: data.error_reason
+            }
+        } else {
+            return {
+                complete: false,
+                data: 'Неизвестная ошибка'
+            }
+        }
     }
 }
