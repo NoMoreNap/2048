@@ -6,7 +6,7 @@ let URL = ''
 
 switch (process.env["REACT_APP_MODE"]) {
     case 'dev':
-        URL = `http://127.0.0.1:3003`//'http://127.0.0.1:3003'
+        URL = `http://127.0.0.1:3004`//'http://127.0.0.1:3003'
         break
     case 'prod':
         URL = ``
