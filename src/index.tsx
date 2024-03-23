@@ -10,7 +10,7 @@ import {NOTVK} from "./screens/NotVK/NotVK";
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-if (process.env.NODE_ENV === 'prod') {
+if (process.env.REACT_APP_MODE === 'prod') {
     disableReactDevTools();
 }
 root.render(
