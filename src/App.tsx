@@ -13,7 +13,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
 
-            <SnackbarProvider maxSnack={2} autoHideDuration={10000}
+            <SnackbarProvider maxSnack={2} autoHideDuration={10000000}
                               action={(key) => <SnackbarCloseButton snackbarKey={key} />} >
                 <PagesWrapper>
                     <Screens/>

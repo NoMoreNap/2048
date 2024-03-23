@@ -29,6 +29,8 @@ export const TopBodyRow: React.FC<ITopUserRow> = ({name, vkid, score, photo, pos
         a.click()
     }
 
+
+
     return (
         <Box
             onClick={openProfile}
@@ -58,7 +60,7 @@ export const TopBodyRow: React.FC<ITopUserRow> = ({name, vkid, score, photo, pos
             </Box>
             <Typography sx={{float: 'right'}}>
                 {
-                    score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                    score !== undefined ? score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : 0
                 }
             </Typography>
 

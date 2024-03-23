@@ -5,6 +5,7 @@ import {Box} from "@mui/material";
 import { SparklesCore } from "../components/ui/sparkles";
 import {useGlobalValue} from "elum-state/react";
 import {PAGE} from "../states/elum";
+import {ModalsAny} from "./ModalsAny";
 
 const StyledMainDiv = styled('div')({
     background: 'linear-gradient(180deg, #472A85 0%, #202C9B 27.5%, #0C1459 59%, #200D30 100%)',
@@ -49,6 +50,8 @@ export const PagesWrapper: React.FC<Props> = ({children}) => {
                 />
             </Box>
             {children}
+
+            <ModalsAny/>
         </StyledMainDiv>
     )
 }

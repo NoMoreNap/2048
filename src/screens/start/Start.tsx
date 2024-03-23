@@ -4,6 +4,7 @@ import {MainLogo} from "../../assets";
 import {Btn} from "../../components/Buttons/Button";
 import {setter, useGlobalValue} from "elum-state/react";
 import {IS_MOBILE, MODAL_STARS, PAGE} from "../../states/elum";
+import {useEnqueueSnackbar} from "../../hooks/useSnackbar/useSnackbar";
 
 const style = {
     width: '100%',
@@ -15,6 +16,8 @@ const style = {
 
 export const Start = () => {
     const isMobile = useGlobalValue(IS_MOBILE)
+    // const {openSnackbar} = useEnqueueSnackbar()
+    // openSnackbar({message: String(window.innerWidth), variant: 'info'})
     return (
         <Box sx={style}>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20vh',width: '100%'}}>

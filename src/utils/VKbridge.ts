@@ -1,5 +1,5 @@
-import {IUserData} from "../interfaces/objects.inteface";
 import bridge, {RequestIdProp, RequestProps, RequestPropsMap, UserInfo} from "@vkontakte/vk-bridge";
+import {findClosestEnabledDate} from "@mui/x-date-pickers/internals/utils/date-utils";
 
 export class VK {
     static async getUsersInfo(users: {vkid: number}[]) {
@@ -9,8 +9,11 @@ export class VK {
             user_ids: stringUsers
         })
             .then((data: {result: UserInfo[]} | UserInfo) => {
-                if ((data as {result: UserInfo[]}).result.length || (data as UserInfo).id) {
+                if (Array.isArray((data as {result: UserInfo[]}).result)) {
                     return data
+                }
+                if ((data as UserInfo).id) {
+                    return {result: [data]}
                 }
             })
             .catch((error) => {
@@ -28,7 +31,7 @@ export class VK {
     static async completeTask<PayloadType>(payload: (RequestProps<keyof RequestPropsMap> & RequestIdProp) | undefined, action: keyof RequestPropsMap, separatop: string) {
         const sign = await this.getHash(separatop)
         const data = await bridge.send(action,payload).then( r => r).catch(e => e)
-        if (data.result) {
+        if (data.result || data.response) {
             return {
                 complete: true,
                 data: sign
@@ -45,5 +48,25 @@ export class VK {
                 data: 'Неизвестная ошибка'
             }
         }
+    }
+
+
+    static async copyText(text: string) {
+        return bridge.send('VKWebAppCopyText', {
+            text
+        })
+            .then((data) => true)
+            .catch((error) => false);
+    }
+
+
+    static async buy(idenf: string) {
+        return bridge.send('VKWebAppShowOrderBox',
+            {
+                type: 'item', // Всегда должно быть 'item'
+                item: idenf, // Идентификатор товара
+            })
+            .then( (data) => true)
+            .catch( (e) => false);
     }
 }

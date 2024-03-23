@@ -34,7 +34,7 @@ export const Tasks: React.FC<IModalStars> = ({handleClose, setPage}) => {
             {
                 isLoading ?
                     <CircularProgress/> :
-                    <TasksBlock tasks={tasks}/>
+                    <TasksBlock getTasks={getTasks} tasks={tasks}/>
             }
         </Box>
     )

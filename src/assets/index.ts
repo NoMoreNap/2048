@@ -16,4 +16,6 @@ export {ReactComponent as First} from "./icons/First.svg";
 export {ReactComponent as Second} from "./icons/Second.svg";
 //@ts-ignore
 export {ReactComponent as Third} from "./icons/Third.svg";
+//@ts-ignore
+export {ReactComponent as VK} from "./icons/VK.svg";
 

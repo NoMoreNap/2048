@@ -18,7 +18,7 @@ export const Votes: React.FC<IModalStars> = ({handleClose, setPage}) => {
             </Box>
             <Box sx={{display: 'flex', flexDirection: 'column', gap: 2, width: '100%'}}>
                 {
-                    VOTES.map((el) => <VotesRow key={`${el.id}_vote`} vote={el}/>)
+                    VOTES.sort((a,b) => b.value - a.value).map((el) => <VotesRow key={`${el.id}_vote`} vote={el}/>)
                 }
             </Box>
         </Box>

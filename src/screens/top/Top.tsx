@@ -15,6 +15,7 @@ export const Top = () => {
         try {
             const {data} = await api.get<{data: {vkid: number, score: number}[]}>('/users/top')
             const vkUsersData= await VK.getUsersInfo(data.data)
+            console.log(data)
             if (vkUsersData === undefined) {
                 return 0
             }

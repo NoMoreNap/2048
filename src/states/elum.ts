@@ -62,7 +62,13 @@ export const MODAL_STARS = atom({
 export const IS_MOBILE = atom({
     key: 'is_mobile',
     default: {
-        key: window.innerWidth < 420,
+        key: window.innerWidth < 500,
         value: URLSearch.get('vk_platform')
     }
+})
+
+
+export const MODAL_ANY = atom({
+    key: 'modal_any',
+    default: ''
 })

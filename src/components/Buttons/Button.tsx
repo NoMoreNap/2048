@@ -36,6 +36,11 @@ export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) 
                 background: 'rgba(50, 46, 249, 1)'
             }
             break
+        case 'gold':
+            style = {
+                background: 'linear-gradient(90deg, rgba(249,242,149,1) 0%, rgba(224,170,62,1) 33%, rgba(250,243,152,1) 66%, rgba(184,138,68,1) 100%)'
+            }
+            break
         default:
             break;
 

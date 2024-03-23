@@ -69,33 +69,38 @@ export const directions = {
 export const VOTES = [
     {
         id: 0,
-        value: 5,
-        title: '1 голос',
-        cost: 1,
+        value: 10,
+        title: '2 голоса',
+        cost: 2,
+        sale: false
     },
     {
         id: 1,
-        value: 15,
-        title: '2 голоса',
-        cost: 2,
+        value: 50,
+        title: '5 голосов',
+        cost: 5,
+        sale: false
     },
     {
-        id: 0,
-        value: 25,
-        title: '3 голоса',
-        cost: 3,
-    },
-    {
-        id: 0,
+        id: 2,
         value: 100,
-        title: '10 голосов',
-        cost: 10,
+        title: '7 голосов',
+        cost: 7,
+        sale: true
     },
     {
-        id: 0,
-        value: 300,
-        title: '25 голосов',
-        cost: 25,
+        id: 3,
+        value: 500,
+        title: '20 голосов',
+        cost: 20,
+        sale: false
+    },
+    {
+        id: 4,
+        value: 1000,
+        title: '30 голосов',
+        cost: 30,
+        sale: false
     },
 ]
 

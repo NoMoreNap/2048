@@ -56,7 +56,8 @@ export interface ITask {
 }
 
 export interface IModalTasksBody {
-    tasks: ITask[]
+    tasks: ITask[],
+    getTasks: () => Promise<void>
 }
 
 

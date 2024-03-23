@@ -2,10 +2,11 @@ import {Box, Collapse, Modal, Typography} from "@mui/material";
 import React from "react";
 import {IModal} from "../interfaces/props.interface";
 import {Start} from "../components/Modals/Stars/Start";
-import {setter} from "elum-state/react";
-import {MODAL_STARS} from "../states/elum";
+import {setter, useGlobalValue} from "elum-state/react";
+import {MODAL_ANY, MODAL_STARS} from "../states/elum";
 import {Tasks} from "../components/Modals/Stars/Tasks/Tasks";
 import {Votes} from "../components/Modals/Stars/Votes/Votes";
+import {Referals} from "../components/Modals/Stars/Referals/Referals";
 const style = {
     position: 'absolute',
     top: '50%',
@@ -19,18 +20,16 @@ const style = {
     overflow: 'visible'
 };
 
-export const ModalStars = () => {
-    const [open, setOpen] = React.useState(true);
-    const [page, setPage] = React.useState('start')
-    const handleOpen = () => setOpen(true);
+export const ModalsAny = () => {
+    const modal = useGlobalValue(MODAL_ANY)
+
     const handleClose = () => {
-        setter(MODAL_STARS, false)
-        setOpen(false)
+        setter(MODAL_ANY, '')
     };
 
     return (
         <Modal
-            open={open}
+            open={modal !== ''}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -38,17 +37,10 @@ export const ModalStars = () => {
         >
             <Box sx={style}>
 
-                <Collapse in={page === 'start'}>
-                    <Start setPage={setPage} handleClose={handleClose}/>
+                <Collapse in={modal === 'referals'}>
+                    <Referals handleClose={handleClose}/>
                 </Collapse>
 
-                <Collapse in={page === 'tasks'}>
-                    <Tasks setPage={setPage} handleClose={handleClose}/>
-                </Collapse>
-
-                <Collapse in={page === 'votes'}>
-                    <Votes setPage={setPage} handleClose={handleClose}/>
-                </Collapse>
 
 
             </Box>
