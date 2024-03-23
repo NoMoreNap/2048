@@ -11,7 +11,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 if (process.env.REACT_APP_MODE === 'prod') {
-    console.log(1)
     disableReactDevTools();
 }
 root.render(
@@ -22,7 +21,9 @@ root.render(
 
 bridge.send('VKWebAppInit').then( r =>
     root.render(
-        <App />
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
     )
 )
 
