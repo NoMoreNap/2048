@@ -11,6 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 if (process.env.REACT_APP_MODE === 'prod') {
+    console.log(1)
     disableReactDevTools();
 }
 root.render(
