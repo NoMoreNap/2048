@@ -1,10 +1,11 @@
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import React from "react";
 import {MainLogo} from "../../assets";
 import {Btn} from "../../components/Buttons/Button";
 import {setter, useGlobalValue} from "elum-state/react";
 import {IS_MOBILE, MODAL_STARS, PAGE} from "../../states/elum";
 import {useEnqueueSnackbar} from "../../hooks/useSnackbar/useSnackbar";
+import {VK} from "../../utils/VKbridge";
 
 const style = {
     width: '100%',
@@ -20,7 +21,7 @@ export const Start = () => {
     // openSnackbar({message: String(window.innerWidth), variant: 'info'})
     return (
         <Box sx={style}>
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20vh',width: '100%'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15vh',width: '100%'}}>
                 <Box>
                     <MainLogo/>
                 </Box>
@@ -34,6 +35,9 @@ export const Start = () => {
                     <Btn onClick={() => setter(MODAL_STARS, true)} type='starred'>Пополнить</Btn>
                     <Btn onClick={() => setter(PAGE, 'top')} type='outlined'>Рейтинг</Btn>
                 </Box>
+                <Typography onClick={() => VK.showRules()} sx={{color: '#fff', cursor: 'pointer', zIndex: 3}}>
+                    Как играть?
+                </Typography>
 
             </Box>
         </Box>

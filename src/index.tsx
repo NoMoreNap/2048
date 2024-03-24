@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(
 if (process.env.REACT_APP_MODE === 'prod') {
     disableReactDevTools();
 }
+
 root.render(
     <PagesWrapper>
         <NOTVK/>
