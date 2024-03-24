@@ -35,10 +35,12 @@ export const Board = () => {
     const minSwipeDistance = 50
 
     const onTouchStart = (e: any) => {
+        e.preventDefault()
         setTouchEnd({x:0,y:0})
         setTouchStart({x:e.targetTouches[0].clientX,y:e.targetTouches[0].clientY})
     }
     const onTouchMove = (e: any) => {
+        e.preventDefault()
         setTouchEnd({x:e.targetTouches[0].clientX,y:e.targetTouches[0].clientY})
     }
     const onTouchEnd = () => {
@@ -68,6 +70,7 @@ export const Board = () => {
 
 
     const onKeyPress = (event: any)  => {
+        event.preventDefault()
 
 
         setAnchor(Math.random())
@@ -93,7 +96,6 @@ export const Board = () => {
             try {
                 const {data} = await api.post('/game/move', {
                     action,
-                    cells
                 })
                 setCells(data.data.cells)
                 setScore(data.data.score)
