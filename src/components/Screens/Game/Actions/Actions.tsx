@@ -69,7 +69,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
                 <Back style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
-                    <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
+                    <Typography sx={{color: '#fff', fontWeight: 400}}>10</Typography>
                 </Box>
             </Box>
 
@@ -77,7 +77,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
                 <Kill style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
-                    <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
+                    <Typography sx={{color: '#fff', fontWeight: 400}}>30</Typography>
                 </Box>
             </Box>
 
@@ -85,7 +85,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
                 <Mult style={style} />
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
-                    <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
+                    <Typography sx={{color: '#fff', fontWeight: 400}}>200</Typography>
                 </Box>
             </Box>
 
@@ -93,7 +93,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
                 <Division style={style}/>
                 <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                     <Star style={{width: '20px'}}/>
-                    <Typography sx={{color: '#fff', fontWeight: 400}}>1</Typography>
+                    <Typography sx={{color: '#fff', fontWeight: 400}}>10</Typography>
                 </Box>
             </Box>
 

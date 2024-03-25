@@ -21,7 +21,7 @@ export const Start = () => {
     // openSnackbar({message: String(window.innerWidth), variant: 'info'})
     return (
         <Box sx={style}>
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15vh',width: '100%'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10vh',width: '100%'}}>
                 <Box>
                     <MainLogo/>
                 </Box>
@@ -29,15 +29,16 @@ export const Start = () => {
                     display: 'flex',
                     flexDirection: 'column'
                     ,width: `calc(100% - ${isMobile.key ? '20': '200'}px)`,
-                    gap: '3vh'
+                    gap: '3vh',
+                    textAlign: 'center'
                 }} >
                     <Btn onClick={() => setter(PAGE, 'game')} type='default'>Играть</Btn>
                     <Btn onClick={() => setter(MODAL_STARS, true)} type='starred'>Пополнить</Btn>
                     <Btn onClick={() => setter(PAGE, 'top')} type='outlined'>Рейтинг</Btn>
+                    <Typography onClick={() => VK.showRules()} sx={{color: '#fff', cursor: 'pointer', zIndex: 3}}>
+                        Как играть?
+                    </Typography>
                 </Box>
-                <Typography onClick={() => VK.showRules()} sx={{color: '#fff', cursor: 'pointer', zIndex: 3}}>
-                    Как играть?
-                </Typography>
 
             </Box>
         </Box>

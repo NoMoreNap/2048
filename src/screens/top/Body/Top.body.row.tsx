@@ -36,7 +36,7 @@ export const TopBodyRow: React.FC<ITopUserRow> = ({name, vkid, score, photo, pos
             onClick={openProfile}
             sx={{
             width: '100%',
-            height: '60px',
+            height: '70px',
             backgroundColor: '#fff',
             borderRadius: '10px',
             padding: '8px 15px',
@@ -51,20 +51,20 @@ export const TopBodyRow: React.FC<ITopUserRow> = ({name, vkid, score, photo, pos
                 <Box sx={{width: '70px'}}>
                     {PositionsIcons(position)}
                 </Box>
-                <Box sx={{display: 'flex', gap: 1,alignItems: 'center'}}>
-                    <Avatar src={photo}/>
-                    <Typography>
-                        {name}
-                    </Typography>
+                <Box sx={{display: 'flex', gap: 1,alignItems: 'center', height: '100%'}}>
+                    <Avatar sx={{width: '50px', height: '50px'}} src={photo}/>
+                    <Box sx={{display: 'flex', flexDirection: 'column', }}>
+                        <Typography>
+                            {name}
+                        </Typography>
+                        <Typography sx={{float: 'right'}}>
+                            {
+                                score !== undefined ? score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : 0
+                            }
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
-            <Typography sx={{float: 'right'}}>
-                {
-                    score !== undefined ? score.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") : 0
-                }
-            </Typography>
-
-
         </Box>
     )
 }
