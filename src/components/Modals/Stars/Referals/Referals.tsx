@@ -42,6 +42,7 @@ export const Referals: React.FC<{handleClose: () => void}> = ({handleClose}) => 
                 </Box>
                 <Typography>
                     За каждого приглашенного человека вы получаете по 5 звездочек!
+                    Игрок должен обязательно начать игру, чтобы вы получили бонус.
                 </Typography>
             </Box>
 
