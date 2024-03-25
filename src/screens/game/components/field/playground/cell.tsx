@@ -25,17 +25,6 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state, isEdit
         zIndex: 1
     }
 
-    // const animation = {
-    //     width: CELL_SIZE,
-    //     height: CELL_SIZE,
-    //     position: 'absolute',
-    //     background: `linear-gradient(${color} 33.5%, rgba(255, 255, 255, 0) 100%)`,
-    //     zIndex: 0,
-    //     top: 0,
-    //     transitionDelay: '2s',
-    //     left: 0,
-    // }
-
     const valueStyle = {
         color: '#fff',
         fontWeight: 700,
