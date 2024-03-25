@@ -1,4 +1,4 @@
-import bridge, {RequestIdProp, RequestProps, RequestPropsMap, UserInfo} from "@vkontakte/vk-bridge";
+import bridge, {EAdsFormats, RequestIdProp, RequestProps, RequestPropsMap, UserInfo} from "@vkontakte/vk-bridge";
 import {findClosestEnabledDate} from "@mui/x-date-pickers/internals/utils/date-utils";
 
 export class VK {
@@ -68,6 +68,40 @@ export class VK {
             })
             .then( (data) => true)
             .catch( (e) => false);
+    }
+
+    static async interstitialAds () {
+        bridge.send('VKWebAppShowNativeAds', {
+            ad_format: 'interstitial' as EAdsFormats
+        }).then(r => console.log(r)).catch((error) => { console.log(error); });
+    }
+
+    static async awardAds() {
+        const ads = await bridge.send('VKWebAppShowNativeAds', {
+            ad_format: 'reward' as EAdsFormats
+        })
+            .then( (data) => {
+                if (data.result) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            .catch((error) => { console.log(error); return false })
+            || true;
+        if (ads) {
+            const sign = await this.getHash('ads')
+            return {
+                isSuccess: true,
+                data: sign
+            }
+        } else {
+            return{
+                Success: false,
+            }
+        }
+
+
     }
 
 

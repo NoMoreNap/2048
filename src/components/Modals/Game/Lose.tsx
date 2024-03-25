@@ -62,7 +62,7 @@ export const LoseModal: React.FC<IModalContent> = ({handleClose}) => {
                             Еще попытка
                         </Typography>
                         <Star/>
-                        <Typography>55</Typography>
+                        <Typography>20</Typography>
                     </Box>
                 </Btn>
                 <Btn onClick={newGame} type={'revert-outlined'}>

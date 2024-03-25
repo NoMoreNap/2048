@@ -36,6 +36,11 @@ export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) 
                 background: 'rgba(50, 46, 249, 1)'
             }
             break
+        case 'purple':
+            style = {
+                background: 'linear-gradient(rgb(185, 15, 247) 0%, rgb(254, 97, 240) 100%)'
+            }
+            break
         case 'gold':
             style = {
                 background: 'linear-gradient(90deg, rgba(249,242,149,1) 0%, rgba(224,170,62,1) 33%, rgba(250,243,152,1) 66%, rgba(184,138,68,1) 100%)'
@@ -53,8 +58,8 @@ export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) 
                 borderRadius: '15px',
                 color: '#fff',
                 height: 70,
-                fontSize: '1.5rem',
-                fontWeight: 400,
+                fontSize: '1.2rem',
+                fontWeight: 300,
                 ...style
         }}
             fullWidth

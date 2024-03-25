@@ -6,7 +6,7 @@ import {BOARD_SIZE} from "../../../../screens/game/configs/main.config";
 import {api} from "../../../../api/api";
 import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
 import {setter, useGlobalValue} from "elum-state/react";
-import {DEFAULT_EDITING_CELL, EDITING_CELL, IS_MOBILE, USER_DATA} from "../../../../states/elum";
+import {DEFAULT_EDITING_CELL, EDITING_CELL, IS_MOBILE, MODAL_STARS, USER_DATA} from "../../../../states/elum";
 
 export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,isEdit}) => {
     const isMobile = useGlobalValue(IS_MOBILE)
@@ -32,6 +32,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
 
             } else {
                 openSnackbar({message: data.detail, variant: 'error'})
+                setter(MODAL_STARS, true)
             }
         } catch (e) {
             console.log(e)

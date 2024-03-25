@@ -36,6 +36,7 @@ export const Top = () => {
 
     React.useEffect(() => {
         getTop()
+        VK.interstitialAds()
     },[])
     return (
         <Box height='100%'>
