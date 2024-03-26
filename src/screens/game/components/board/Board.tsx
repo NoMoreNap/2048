@@ -7,7 +7,16 @@ import { api } from '../../../../api/api';
 import CachedIcon from '@mui/icons-material/Cached';
 import {Actions} from "../../../../components/Screens/Game/Actions/Actions";
 import {setter, useGlobalValue} from "elum-state/react";
-import {CELEBRATING, IS_MOBILE, IS_NEW_GAME, IS_SAVE_GAME, MODAL, RESULT, USER_DATA} from "../../../../states/elum";
+import {
+    CELEBRATING,
+    IS_MOBILE,
+    IS_NEW_GAME,
+    IS_SAVE_GAME,
+    MODAL,
+    MODAL_STARS,
+    RESULT,
+    USER_DATA
+} from "../../../../states/elum";
 import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
 
 export const Board = () => {
@@ -157,7 +166,10 @@ export const Board = () => {
         try {
             const {data} = await api.get('/game/actions/save')
             if (!data.status) {
-                await restartGame()
+                //await restartGame()
+                if (data.detail.includes('Недостаточно')) {
+                    setter(MODAL_STARS, true)
+                }
                 return openSnackbar({message: data.detail, variant: 'error'})
             }
             setter(USER_DATA, (state) => ({...state, gameInfo: {...state.gameInfo, balance: data.data.new_balance}}))

@@ -22,6 +22,7 @@ export interface IScreenProvider extends Props{
 export interface IBtnProps extends  Props {
     type?: string
     onClick?: (a: any) => any
+    visible?: boolean
 }
 
 export interface IActionsProps {

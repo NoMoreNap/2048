@@ -21,7 +21,7 @@ export const Field: React.FC<IField> = ({cells, isEdit, setCells, setIsEdit, isL
 
 
     return (
-        <Box sx = {{width: 'fit-content', height: 'fit-content', position: 'relative', cursor: `${!isEdit  ? 'pointer' : 'default'}`, touchAction: 'none'}}>
+        <Box sx = {{width: 'fit-content', height: 'fit-content', position: 'relative', cursor: `${isEdit  ? 'pointer' : 'default'}`, touchAction: 'none'}}>
             <Background>
                 {
                     Array.from(Array(16)).map((_: any,i) =>

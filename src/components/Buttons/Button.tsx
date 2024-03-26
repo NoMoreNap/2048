@@ -2,7 +2,7 @@ import {IBtnProps} from "../../interfaces/props.interface";
 import {Button} from "@mui/material";
 import React from "react";
 
-export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) => {
+export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick, visible = true}) => {
     let style = {}
 
     switch (type) {
@@ -55,6 +55,7 @@ export const Btn: React.FC<IBtnProps> = ({children, type = 'default', onClick}) 
         <Button
             onClick={onClick}
             style={{
+                display: visible ? 'block' : 'none',
                 borderRadius: '15px',
                 color: '#fff',
                 height: 70,

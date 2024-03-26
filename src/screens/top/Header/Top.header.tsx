@@ -1,10 +1,11 @@
 import {Box, Typography} from "@mui/material";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import React from "react";
-import {setter} from "elum-state/react";
-import {PAGE} from "../../../states/elum";
+import {setter, useGlobalValue} from "elum-state/react";
+import {IS_MOBILE, PAGE} from "../../../states/elum";
 
 export const TopHeader = () => {
+    const is_mobile = useGlobalValue(IS_MOBILE)
     return (
         <Box sx={{width: '100%', height: '25vh', position: 'relative', backgroundColor: '#fff', borderRadius: '0 0 30px 30px', left: 0}}>
             <Box sx={{
@@ -12,7 +13,7 @@ export const TopHeader = () => {
                 width: '50px',
                 position: 'absolute',
                 left: '20px',
-                top: '10px',
+                top: is_mobile.value === 'mobile_iphone' ? '4rem' : '10px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',

@@ -6,11 +6,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import {VK} from "../../../utils/VKbridge";
 import {api} from "../../../api/api";
 import {useEnqueueSnackbar} from "../../../hooks/useSnackbar/useSnackbar";
-import {setter} from "elum-state/react";
-import {USER_DATA} from "../../../states/elum";
+import {setter, useGlobalValue} from "elum-state/react";
+import {IS_MOBILE, USER_DATA} from "../../../states/elum";
 
 export const Start: React.FC<IModalStars> = ({handleClose, setPage}) => {
     const {openSnackbar} = useEnqueueSnackbar()
+    const isMobile = useGlobalValue(IS_MOBILE)
 
 
     const showAds = async () => {
@@ -42,7 +43,7 @@ export const Start: React.FC<IModalStars> = ({handleClose, setPage}) => {
             <Btn onClick={() => setPage('tasks')} type={'blue'}>
                 За задания
             </Btn>
-            <Btn onClick={() => setPage('votes')} type={'default'}>
+            <Btn visible={isMobile.value !== 'mobile_iphone'} onClick={() => setPage('votes')} type={'default'}>
                 За голоса
             </Btn>
             <Btn onClick={showAds} type={'purple'}>
