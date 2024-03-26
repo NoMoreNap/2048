@@ -14,6 +14,10 @@ function App() {
     React.useEffect(() => {
         bridge.send('VKWebAppShowBannerAd', {
             banner_location: 'bottom' as BannerAdLocation
+        }).then(r => {
+            if (r.result) {
+                console.log(r)
+            }
         }).catch((error) => {console.log(error);});
     }, [])
     return (

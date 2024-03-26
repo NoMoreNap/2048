@@ -16,7 +16,7 @@ export const TopBody: React.FC<ITopUsersProps> = ({users}) => {
             className='center'
             style={{
                 width: '100%',
-                maxHeight: '60vh',
+                maxHeight: 'calc(100% - 32vh)',
                 overflow: "visible"
             }}>
                 <Box sx={{

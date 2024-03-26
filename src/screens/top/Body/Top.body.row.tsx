@@ -51,7 +51,7 @@ export const TopBodyRow: React.FC<ITopUserRow> = ({name, vkid, score, photo, pos
                 <Box sx={{width: '70px'}}>
                     {PositionsIcons(position)}
                 </Box>
-                <Box sx={{display: 'flex', gap: 1,alignItems: 'center', height: '100%'}}>
+                <Box sx={{display: 'flex', gap: 1,alignItems: 'center', height: '100%', overflow: 'visible'}}>
                     <Avatar sx={{width: '50px', height: '50px'}} src={photo}/>
                     <Box sx={{display: 'flex', flexDirection: 'column', }}>
                         <Typography>

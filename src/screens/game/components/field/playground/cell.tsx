@@ -30,11 +30,12 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state, isEdit
         fontWeight: 700,
         position: 'relative',
         zIndex: 1,
+        pointerEvents: 'none',
         fontSize: (() =>
-                value < 100 ? 50
-                    : value < 1000 ? 40
-                        : value < 10000 ? 30
-                            : 20
+                value < 100 ? '2rem'
+                    : value < 1000 ? '1.8rem'
+                        : value < 10000 ? '1.5rem'
+                            : '1rem'
         )()
     }
     return (

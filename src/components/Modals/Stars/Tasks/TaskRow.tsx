@@ -31,7 +31,7 @@ export const TaskRow: React.FC<{task: ITask, getTasks: () => Promise<void>}> = (
                     }
 
                 } else {
-                    openSnackbar({message: data.data, variant: 'error'})
+                    openSnackbar({message: data.data as string, variant: 'error'})
                 }
                 break
             case 'modal':
