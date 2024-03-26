@@ -15,7 +15,7 @@ const style = {
     width: 'calc(100% - 40px)',
     bgcolor: 'background.paper',
     borderRadius: '16px',
-    p: 4,
+    p: '1rem',
     boxShadow: 24,
     overflow: 'visible'
 };

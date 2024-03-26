@@ -32,7 +32,7 @@ export const Actions: React.FC<IActionsProps> = ({setCells, setScore,setIsEdit,i
 
             } else {
                 openSnackbar({message: data.detail, variant: 'error'})
-                setter(MODAL_STARS, true)
+                data.detail.includes('Недостаточно') && setter(MODAL_STARS, true)
             }
         } catch (e) {
             console.log(e)

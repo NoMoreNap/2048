@@ -22,7 +22,8 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state, isEdit
         overflow: 'visible',
         border: isEdit ? '5px dashed #fff' : '',
         cursor: isEdit ? 'pointer' : '',
-        zIndex: 1
+        zIndex: 1,
+        boxSizing: 'border-box'
     }
 
     const valueStyle = {

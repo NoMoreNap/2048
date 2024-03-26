@@ -15,7 +15,7 @@ const width = window.innerWidth
 if (width < 600) {
     GAP_SIZE = GAP_SIZE_MOBILE
     BOARD_SIZE = width - (10*2)
-    CELL_SIZE = (BOARD_SIZE / 4) - (GAP_SIZE * 3) +.5
+    CELL_SIZE = (BOARD_SIZE / 4) - (GAP_SIZE) +.5
     BOARD_PADDING = BOARD_PADDING_MOBILE
 }
 

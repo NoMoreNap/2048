@@ -1,10 +1,12 @@
-import {Box, Typography} from "@mui/material";
+import {Box, Button, Menu, MenuItem, Typography} from "@mui/material";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import {BOARD_SIZE} from "../../../../screens/game/configs/main.config";
 import {setter, useGlobalValue} from "elum-state/react";
 import {MODAL_STARS, PAGE, USER_DATA} from "../../../../states/elum";
 import {Star} from "../../../../assets";
 import AddIcon from '@mui/icons-material/Add';
+import React from "react";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const Navbar = () => {
     const userData = useGlobalValue(USER_DATA)
@@ -48,4 +50,41 @@ export const Navbar = () => {
 
         </Box>
     )
+}
+
+
+export const MobileNav = () => {
+    const userData = useGlobalValue(USER_DATA)
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    return (
+        <Box sx={{width: '100%', display: 'flex', alignItems: 'center', gap: 1, zIndex: 1}}>
+            <Box onClick={handleClick} sx={{width: 30, height: 30, position: 'relative', zIndex: 1, cursor: 'pointer'}}>
+                <MenuIcon sx={{color: '#fff', width: 30, height: 30}}/>
+            </Box>
+            <Box sx={{display: 'flex', alignItems: 'center', gap: 1}}>
+                <Star style={{width: '25px', height: '25px'}}/>
+                <Typography sx={{color: '#fff'}}>{userData.gameInfo.balance}</Typography>
+            </Box>
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <MenuItem onClick={() => setter(PAGE, 'start')}>Вернуться</MenuItem>
+                <MenuItem onClick={() => setter(MODAL_STARS, true)}>Пополнить</MenuItem>
+            </Menu>
+        </Box>
+    );
 }

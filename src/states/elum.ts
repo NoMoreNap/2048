@@ -72,3 +72,9 @@ export const MODAL_ANY = atom({
     key: 'modal_any',
     default: ''
 })
+
+
+export const BANNER_HEIGHT = atom({
+    key: 'banner_height',
+    default: 0
+})

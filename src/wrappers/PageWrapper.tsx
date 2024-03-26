@@ -4,20 +4,20 @@ import {Props} from "../interfaces/props.interface";
 import {Box} from "@mui/material";
 import { SparklesCore } from "../components/ui/sparkles";
 import {useGlobalValue} from "elum-state/react";
-import {PAGE} from "../states/elum";
+import {BANNER_HEIGHT, PAGE} from "../states/elum";
 import {ModalsAny} from "./ModalsAny";
 
 const StyledMainDiv = styled('div')({
     background: 'linear-gradient(180deg, #472A85 0%, #202C9B 27.5%, #0C1459 59%, #200D30 100%)',
     width: '100vw',
-    height: '100vh',
     position: 'relative'
 });
 
 export const PagesWrapper: React.FC<Props> = ({children}) => {
     const page = useGlobalValue(PAGE)
+    const banner = useGlobalValue(BANNER_HEIGHT)
     return (
-        <StyledMainDiv className={page !== 'top' ? 'center' : ''}>
+        <StyledMainDiv className={page !== 'top' ? 'center' : ''} style={{height: `calc(100vh - ${banner}px)`}}>
             <Box
                 sx={{
                     backgroundImage: 'url(/assets/backgrounds/lights.png)',

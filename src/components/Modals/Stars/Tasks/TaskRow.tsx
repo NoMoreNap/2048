@@ -44,7 +44,7 @@ export const TaskRow: React.FC<{task: ITask, getTasks: () => Promise<void>}> = (
     return (
         <Btn  onClick={clickOnTask} type='default'>
             <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', height: '100%'}}>
-                <Typography sx={{fontSize: '1rem'}}>{task.title}</Typography>
+                <Typography sx={{fontSize: '1rem', maxWidth: '50%', overflow: 'visible'}}>{task.title}</Typography>
                 <Box sx={{display: 'flex', alignItems: 'center', height: '100%', gap: 1}}>
                     <Box sx={{height: '90%', width: '2px', borderRadius: '1px', background: '#fff'}}/>
                     <Typography sx={{fontSize: '1rem'}}>{task.award}</Typography>
