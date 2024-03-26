@@ -9,7 +9,9 @@ export const Background: React.FC<Props> = ({children}) => {
         display: 'grid',
         gridTemplateColumns: 'repeat(4,1fr)',
         gridRowGap: GAP_SIZE,
-        gridColumnGap: GAP_SIZE
+        gridColumnGap: GAP_SIZE,
+        pointerEvents: 'none',
+        touchAction: 'none'
     }
     return (
         <Box sx={style}>

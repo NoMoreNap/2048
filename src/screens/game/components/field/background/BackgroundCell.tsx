@@ -8,7 +8,9 @@ export const BackgroundCell = () => {
         backgroundColor: '#fff',
         borderRadius: '5px',
         width: CELL_SIZE,
-        height: CELL_SIZE
+        height: CELL_SIZE,
+        pointerEvents: 'none',
+        userSelect: 'none'
     }
     return (
         <Box sx ={style}/>

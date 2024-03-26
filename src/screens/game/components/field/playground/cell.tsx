@@ -21,8 +21,10 @@ export const PlayCell: React.FC<ICell> = ({x,y,value, id, onClick, state, isEdit
         justifyContent: 'center',
         overflow: 'visible',
         border: isEdit ? '5px dashed #fff' : '',
-        cursor: isEdit ? 'pointer' : '',
+        cursor: isEdit ? 'pointer' : 'default',
+        pointerEvents: isEdit ? 'auto' : 'none',
         zIndex: 1,
+        userSelect: 'none',
         boxSizing: 'border-box'
     }
 

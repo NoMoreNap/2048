@@ -35,10 +35,10 @@ export const ModalWrapper: React.FC<IModal> = ({type}) => {
         position: 'relative',
         zIndex: 1,
         fontSize: (() =>
-                result.maxCell < 100 ? 50
-                    : result.maxCell < 1000 ? 40
-                        : result.maxCell < 10000 ? 30
-                            : 20
+                result.maxCell < 100 ? '2rem'
+                    : result.maxCell < 1000 ? '1.8rem'
+                        : result.maxCell < 10000 ? '1.5rem'
+                            : '1rem'
         )()
     }
     return (

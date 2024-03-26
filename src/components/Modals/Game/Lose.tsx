@@ -25,10 +25,10 @@ export const LoseModal: React.FC<IModalContent> = ({handleClose}) => {
         position: 'relative',
         zIndex: 1,
         fontSize: (() =>
-                result.maxCell < 100 ? 50
-                    : result.maxCell < 1000 ? 40
-                        : result.maxCell < 10000 ? 30
-                            : 20
+                result.maxCell < 100 ? '2rem'
+                    : result.maxCell < 1000 ? '1.8rem'
+                        : result.maxCell < 10000 ? '1.5rem'
+                            : '1rem'
         )()
     }
     return (
@@ -59,7 +59,7 @@ export const LoseModal: React.FC<IModalContent> = ({handleClose}) => {
                 <Btn onClick={saveGame} type={'default'}>
                     <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                         <Typography>
-                            Продолжить игру
+                            Еще попытка
                         </Typography>
                         <Star/>
                         <Typography>20</Typography>

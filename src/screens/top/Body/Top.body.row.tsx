@@ -12,7 +12,7 @@ const PositionsIcons = (pos: number) => {
         case 2:
             return <Third/>
         default:
-            return  <Typography sx={{fontSize: '1.5rem'}}>{pos}</Typography>
+            return  <Typography sx={{fontSize: '1.5rem'}}>{pos + 1}</Typography>
 
     }
 
