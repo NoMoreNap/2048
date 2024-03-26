@@ -87,7 +87,7 @@ export const MaxScore: React.FC<IModalContent> = ({handleClose}) => {
                 <Btn onClick={saveGame} type={'default'}>
                     <Box sx={{display: 'flex', alignItems: 'center', gap: 2}}>
                         <Typography>
-                            Еще попытка
+                            Продолжить игру
                         </Typography>
                         <Star/>
                         <Typography>55</Typography>
