@@ -18,7 +18,7 @@ function App() {
             banner_location: 'bottom' as BannerAdLocation
         }).then(r => {
             if (r.result) {
-                setter(BANNER_HEIGHT, r.banner_height)
+                //setter(BANNER_HEIGHT, r.banner_height)
                 console.log(r)
             }
         }).catch((error) => {console.log(error);});
