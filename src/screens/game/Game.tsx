@@ -12,7 +12,7 @@ export const Game = () => {
         VK.interstitialAds()
     },[])
     return (
-        <Box sx={{display: 'flex',  width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 5}}>
+        <Box sx={{display: 'flex',  width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: isMobile.key ? 2 : 5}}>
             {!isMobile.key ?
                 <Navbar/> :
                 <MobileNav/>

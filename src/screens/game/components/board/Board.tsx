@@ -7,7 +7,7 @@ import { api } from '../../../../api/api';
 import CachedIcon from '@mui/icons-material/Cached';
 import {Actions} from "../../../../components/Screens/Game/Actions/Actions";
 import {setter, useGlobalValue} from "elum-state/react";
-import {CELEBRATING, IS_NEW_GAME, IS_SAVE_GAME, MODAL, RESULT, USER_DATA} from "../../../../states/elum";
+import {CELEBRATING, IS_MOBILE, IS_NEW_GAME, IS_SAVE_GAME, MODAL, RESULT, USER_DATA} from "../../../../states/elum";
 import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
 
 export const Board = () => {
@@ -21,6 +21,8 @@ export const Board = () => {
     const [score, setScore] = React.useState(0)
     const [touchStart, setTouchStart] = React.useState({x:0,y:0})
     const [touchEnd, setTouchEnd] = React.useState({x:0,y:0})
+    const isMobile = useGlobalValue(IS_MOBILE)
+
 
     const [action,setAction] = React.useState('null')
     const [anchor, setAnchor] = React.useState(0)
@@ -195,7 +197,7 @@ export const Board = () => {
 
     return (
         <>
-            <Box onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} display={'flex'} flexDirection={'column'} gap={2}>
+            <Box onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} display={'flex'} flexDirection={'column'} gap={ isMobile.key ? 0 : 2}>
                 <Box sx={{display: 'flex', justifyContent: 'space-between', zIndex: 2}}>
                     <Box sx={{display: 'flex', gap: 2}}>
                         <Typography sx={{color: '#fff', fontSize: '1.2rem'}}>Счет: </Typography>
