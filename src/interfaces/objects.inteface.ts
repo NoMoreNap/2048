@@ -10,6 +10,10 @@ export interface ICell {
 }
 
 export interface IUserData {
+    misc: {
+        show_sub_notify?: boolean
+        show_sub_subscribe?: boolean
+    }
     vkid: number
     profileInfo: {
         first_name?: string
@@ -18,6 +22,18 @@ export interface IUserData {
     gameInfo: {
         balance: number
     },
+}
+
+export interface ITopUsers {
+    data: {
+        users:{
+            vkid: number, score: number
+        }[],
+        misc: {
+            show_sub_notify?: boolean
+            show_sub_subscribe?: boolean
+        }
+    }
 }
 
 

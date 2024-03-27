@@ -18,6 +18,7 @@ import {
     USER_DATA
 } from "../../../../states/elum";
 import {useEnqueueSnackbar} from "../../../../hooks/useSnackbar/useSnackbar";
+import {VK} from "../../../../utils/VKbridge";
 
 export const Board = () => {
     const IsNewGame = useGlobalValue(IS_NEW_GAME)
@@ -36,6 +37,7 @@ export const Board = () => {
     const [action,setAction] = React.useState('null')
     const [anchor, setAnchor] = React.useState(0)
     const [lose, setLose] = React.useState(false)
+    const [is_ads, setIsAds] = React.useState(true)
 
     /* to buy functions */
     const [isEdit, setIsEdit] = React.useState(false)
@@ -107,6 +109,16 @@ export const Board = () => {
                 const {data} = await api.post('/game/move', {
                     action,
                 })
+                if (data.data.isAds) {
+                    console.log('awardAds')
+                    VK.awardAds(true)
+                }
+                console.log(is_ads)
+                if (data.data.maxCell === 64 && is_ads) {
+                    console.log('interstitialAds')
+                    setIsAds(false)
+                    VK.interstitialAds()
+                }
                 setScore(data.data.score)
                 setCells(data.data.cells)
                 if (data.data.lose) {
@@ -135,6 +147,15 @@ export const Board = () => {
             if (!data.data?.can_play) {
                 setLose(true)
             }
+            if(data.data.maxCell >= 64) {
+                setIsAds(false)
+            }
+            if (data.data.maxCell >= celebratingCell.number) {
+                setter(CELEBRATING, {number: data.data.maxCell * 2})
+            } else {
+                setter(CELEBRATING, {number: 2048})
+            }
+            setter(USER_DATA, (state) => ({...state, misc: {...state.misc, show_sub_notify: false}}))
             setCells(data.data.cells)
             setScore(data.data.score)
         }catch (e) {
@@ -151,8 +172,10 @@ export const Board = () => {
         try {
             const {data} = await api.get('/game/restart')
             setLose(false)
+            setter(CELEBRATING, {number: 2048})
             setCells(data.data.cells)
             setScore(data.data.score)
+            setIsAds(true)
         }catch (e) {
             console.log(e)
         } finally {

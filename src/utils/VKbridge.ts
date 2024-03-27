@@ -77,7 +77,7 @@ export class VK {
         }).then(r => console.log(r)).catch((error) => { console.log(error); });
     }
 
-    static async awardAds() {
+    static async awardAds(withoutReward = false) {
         const ads = await bridge.send('VKWebAppShowNativeAds', {
             ad_format: 'reward' as EAdsFormats
         })
@@ -90,7 +90,7 @@ export class VK {
             })
             .catch((error) => { console.log(error); return false })
             //|| true;
-        if (ads) {
+        if (ads && !withoutReward) {
             const sign = await this.getHash('ads')
             return {
                 isSuccess: true,

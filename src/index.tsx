@@ -22,9 +22,7 @@ root.render(
 
 bridge.send('VKWebAppInit').then( r =>
     root.render(
-        <React.StrictMode>
             <App />
-        </React.StrictMode>
     )
 )
 
