@@ -37,6 +37,15 @@ export const TaskRow: React.FC<{task: ITask, getTasks: () => Promise<void>}> = (
             case 'modal':
                 setter(MODAL_ANY, task.data.action)
                 break
+            case 'outer':
+                const sign = await VK.getHash(`task_${task.id}`)
+                const a = document.createElement('a')
+                a.href = task.data.action
+                a.target = '_blank'
+                a.click()
+                await api.post('/tasks/check', {...sign, custom:  task.data.payload})
+
+                break
         }
 
 
