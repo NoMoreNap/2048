@@ -9,6 +9,7 @@ import {VK} from "../../utils/VKbridge";
 import {Simulate} from "react-dom/test-utils";
 import click = Simulate.click;
 import bridge from "@vkontakte/vk-bridge";
+import {api} from "../../api/api";
 
 const style = {
     width: '100%',
@@ -27,7 +28,11 @@ export const Start = () => {
 
     const clickOnPlay = async () => {
         if(userData.misc.show_sub_notify !== undefined && userData.misc.show_sub_notify) {
-            await bridge.send('VKWebAppAllowNotifications').catch(console.dir)
+            const result = await bridge.send('VKWebAppAllowNotifications').then(r => r.result)
+            if (result) {
+                await api.get('/misc/sub_to_notify')
+            }
+
         }
         setter(PAGE, 'game')
     }

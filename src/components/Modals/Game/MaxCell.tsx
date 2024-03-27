@@ -66,7 +66,7 @@ export const MaxCell: React.FC<IModalContent> = ({handleClose}) => {
                 overflow: 'visible'
             }}>
                 <Box sx={{
-                    backgroundImage: 'url(/assets/backgrounds/Rays.png)',
+                    backgroundImage: 'url(./assets/backgrounds/Rays.png)',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
@@ -75,7 +75,7 @@ export const MaxCell: React.FC<IModalContent> = ({handleClose}) => {
                     position: 'absolute',
                     zIndex: -1,
                 }}/>
-                <img src='/assets/backgrounds/Trophy.png'/>
+                <img src='./assets/backgrounds/Trophy.png'/>
             </Box>
             <Box sx={{display: 'flex', flexDirection: 'column',gap: 5}}>
                 <Btn onClick={shareViaHistory} type={'blue'}>

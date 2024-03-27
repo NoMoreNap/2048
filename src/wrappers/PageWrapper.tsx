@@ -20,7 +20,7 @@ export const PagesWrapper: React.FC<Props> = ({children}) => {
         <StyledMainDiv className={page !== 'top' ? 'center' : ''} style={{height: `calc(100vh - ${banner}px)`}}>
             <Box
                 sx={{
-                    backgroundImage: 'url(/assets/backgrounds/lights.png)',
+                    backgroundImage: 'url(../assets/backgrounds/lights.png)',
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',

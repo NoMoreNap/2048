@@ -28,7 +28,7 @@ export const TopHeader = () => {
             <Box sx={{
                 top: '50%',
                 left: '50%',
-                backgroundImage: 'url(/assets/backgrounds/Rays.png)',
+                backgroundImage: 'url(./assets/backgrounds/Rays.png)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -37,7 +37,7 @@ export const TopHeader = () => {
                 backgroundRepeat: 'no-repeat',
                 width: '100%'
             }}>
-                <img src='/assets/backgrounds/trophy_top.png'/>
+                <img src='./assets/backgrounds/trophy_top.png'/>
             </Box>
         </Box>
     )
