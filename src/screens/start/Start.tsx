@@ -28,7 +28,7 @@ export const Start = () => {
 
     const clickOnPlay = async () => {
         if(userData.misc.show_sub_notify !== undefined && userData.misc.show_sub_notify) {
-            const result = await bridge.send('VKWebAppAllowNotifications').then(r => r.result)
+            const result = await bridge.send('VKWebAppAllowNotifications').then(r => r.result). catch(_ => false)
             if (result) {
                 await api.get('/misc/sub_to_notify')
             }
