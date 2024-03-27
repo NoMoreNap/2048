@@ -4,9 +4,14 @@ import {CELEBRATING, IS_NEW_GAME, IS_SAVE_GAME, RESULT} from "../../../states/el
 import {Btn} from "../../Buttons/Button";
 import React from "react";
 import {IModalContent} from "../../../interfaces/props.interface";
+import {api} from "../../../api/api";
+import {VK} from "../../../utils/VKbridge";
+import {useEnqueueSnackbar} from "../../../hooks/useSnackbar/useSnackbar";
 
 export const MaxCell: React.FC<IModalContent> = ({handleClose}) => {
     const celebratingCell = useGlobalValue(CELEBRATING)
+    const {openSnackbar} = useEnqueueSnackbar()
+
 
     const newGame = () => {
         handleClose()
@@ -15,6 +20,21 @@ export const MaxCell: React.FC<IModalContent> = ({handleClose}) => {
     const saveGame = () => {
         handleClose()
         setter(IS_SAVE_GAME, true)
+    }
+
+    const shareViaHistory = async () => {
+        try {
+            const {data} = await api.get(`/misc/create_history?points=${celebratingCell.number / 2}`)
+            if (data.status) {
+                const request = await VK.shareBlobHistory(data.data.img)
+                openSnackbar({message: request.is_success ? 'Успешно!' : request.reason, variant: request.is_success ? 'success' : 'error'})
+            } else {
+                openSnackbar({message: 'Ошибка создания истории', variant: 'error'})
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
 
@@ -58,7 +78,7 @@ export const MaxCell: React.FC<IModalContent> = ({handleClose}) => {
                 <img src='/assets/backgrounds/Trophy.png'/>
             </Box>
             <Box sx={{display: 'flex', flexDirection: 'column',gap: 5}}>
-                <Btn onClick={() => {}} type={'blue'}>
+                <Btn onClick={shareViaHistory} type={'blue'}>
                     Поделиться в истории
                 </Btn>
                 <Btn onClick={() => handleClose()} type={'revert-outlined'}>

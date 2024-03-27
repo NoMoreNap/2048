@@ -106,6 +106,20 @@ export class VK {
     }
 
 
+    static async shareBlobHistory(blob: string) {
+        const data = await bridge.send('VKWebAppShowStoryBox', {
+            background_type: 'image',
+            blob : blob,
+            attachment: {
+                text: 'open',
+                type: 'url',
+                url: 'https://vk.com/app51871802'
+            },
+        }).then(r => ({is_success: r.result,})).catch(_ => ({is_success: false, reason: _.error_data.error_reason}))
+        return data
+    }
+
+
     static async showRules() {
         return bridge.send('VKWebAppShowSlidesSheet', {
             slides: [
