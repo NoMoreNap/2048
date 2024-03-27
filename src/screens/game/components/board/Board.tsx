@@ -122,6 +122,7 @@ export const Board = () => {
                 setScore(data.data.score)
                 setCells(data.data.cells)
                 if (data.data.lose) {
+                    await VK.awardAds(true)
                     setLose(true)
                     if (data.data.isMaxScore) {
                         setter(MODAL, 'max_score')
